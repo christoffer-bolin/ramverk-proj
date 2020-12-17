@@ -1,7 +1,15 @@
 <?php
 
 namespace Anax\View;
-$edit = " <a href=" . url("user/edit/" . $user->userId) ."><button type='button'>Redigera användare</button></a>";
+
+$questions = isset($questions) ? $questions : null;
+//$comments = isset($comments) ? $comments : null;
+$user = isset($user) ? $user : null;
+
+
+$edit = " <a href=" . url("user/edit/" . $user->userId) ."><button type='button'><b>Redigera användare</b></button></a>";
+$idCheck = $this->di->get("session")->get("userId");
+
 /**
  * Frontpage for books
  */
@@ -9,7 +17,26 @@ $edit = " <a href=" . url("user/edit/" . $user->userId) ."><button type='button'
 ?>
 <h1>Profil för <?= $user->username ?> </h1>
 
-<div style="height: 550px;">
-    <h3>En sida om böcker, för böcker, av böcker...</h3>
-    <p><?= $edit ?></p>
+<div style="height: auto; border: 1px solid black; padding-left: 5px;">
+    <p><b>Användarnamn:</b> <?= $user->username ?></p>
+    <p><b>E-post:</b> <?= $user->email ?></p>
+    <p><b>Aktivitetspoäng:</b> <?= $user->points ?></p>
+    <p><img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($user->email) ?>?s=200&d=mm"></p>
+
+    <?php
+    if ($questions) : ?>
+    <div>
+        <h3><?= sizeof($questions) ?> frågor ställda i forumet</h3>
+        <ul class="userpageul">
+            <?php foreach ($questions as $question) : ?>
+            <li>
+                <a href="<?= url("forum/viewquestion/" . $question->questionId) ?>"><?= $question->rubrik ?></a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+    <?php if ($user->userId == $idCheck) { ?>
+        <p> <?= $edit ?> </p>
+    <?php } ?>
 </div>

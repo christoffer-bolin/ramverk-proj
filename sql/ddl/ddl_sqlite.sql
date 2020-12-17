@@ -10,44 +10,57 @@ CREATE TABLE User (
     "points" INTEGER DEFAULT 0
 );
 
--- --
--- -- Table Post
--- --
--- DROP TABLE IF EXISTS Post;
--- CREATE TABLE Post (
---     "postId" INTEGER PRIMARY KEY NOT NULL,
---     "userId" INTEGER NOT NULL,
---     "text" TEXT,
---     "title" TEXT
--- );
 --
--- --
--- -- Table Comment
--- --
--- DROP TABLE IF EXISTS Comment;
--- CREATE TABLE Comment (
---     "commentId" INTEGER PRIMARY KEY NOT NULL,
---     "postId" INTEGER NOT NULL,
---     "replyId" INTEGER,
---     "userId" INTEGER,
---     "text" TEXT
--- );
+-- Table Forum
 --
--- --
--- -- Table Tags
--- --
--- DROP TABLE IF EXISTS Tag;
--- CREATE TABLE Tag (
---     "tagId" INTEGER PRIMARY KEY NOT NULL,
---     "tag" TEXT UNIQUE NOT NULL
--- );
+DROP TABLE IF EXISTS Forum;
+CREATE TABLE Forum (
+    "questionId" INTEGER PRIMARY KEY NOT NULL,
+    "rubrik" TEXT NOT NULL,
+    "question" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL
+);
+
 --
--- --
--- -- TABLE TagsPost
--- --
--- DROP TABLE IF EXISTS Tag2Post;
--- CREATE TABLE Tag2Post (
---     "id" INTEGER PRIMARY KEY NOT NULL,
---     "tagId" INTEGER,
---     "postId" INTEGER
--- );
+-- Table Answers
+--
+DROP TABLE IF EXISTS Answers;
+CREATE TABLE Answers (
+    "answerId" INTEGER PRIMARY KEY NOT NULL,
+    "answer" TEXT NOT NULL,
+    "questionId" INTEGER NOT NULL
+);
+
+--
+-- Table Tags
+--
+DROP TABLE IF EXISTS Tags;
+CREATE TABLE Tags (
+    "tagId" INTEGER PRIMARY KEY NOT NULL,
+    "tag" TEXT UNIQUE NOT NULL
+);
+
+
+--
+-- Table Comment
+--
+DROP TABLE IF EXISTS Comments;
+CREATE TABLE Comments (
+    "commentId" INTEGER PRIMARY KEY NOT NULL,
+    "questionId" INTEGER NOT NULL,
+    "userId" INTEGER,
+    "answerId" INTEGER,
+    "comment" TEXT
+);
+
+
+
+--
+-- TABLE TagsPost
+--
+DROP TABLE IF EXISTS Tag2Forum;
+CREATE TABLE Tag2Forum (
+    "id" INTEGER PRIMARY KEY NOT NULL,
+    "tagId" INTEGER,
+    "questionId" INTEGER
+);

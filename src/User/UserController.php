@@ -7,6 +7,8 @@ use Anax\Commons\ContainerInjectableTrait;
 use Anax\User\HTMLForm\UserLoginForm;
 use Anax\User\HTMLForm\CreateUserForm;
 use Anax\User\HTMLForm\EditProfile;
+use Anax\Forum\Forum;
+use Anax\Answers\Answers;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -143,18 +145,23 @@ class UserController implements ContainerInjectableInterface
         ]);
     }
 
-    public function userpageAction($id) : object
+    public function userpageAction(int $id) : object
     {
         $page = $this->di->get("page");
 
-        $userId = $this->di->get("session")->get("userId");
+        //$userId = $this->di->get("session")->get("userId");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
-        $user->find("userId", $userId);
+        $user->find("userId", $id);
 
+        $forum = new Forum();
+        $forum->setDb($this->di->get("dbqb"));
+        $questions = $forum->findAllWhere("forum.userId = ?", $id);
 
+        //var_dump($questions);
         $data = [
-            "user" => $user
+            "user" => $user,
+            "questions" => $questions
         ];
 
 

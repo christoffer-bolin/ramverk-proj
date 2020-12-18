@@ -11,18 +11,23 @@ use Anax\Comments\Comments;
  */
 class CreateForm extends FormModel
 {
+
+    public $entryId;
+
+
     /**
      * Constructor injects with DI container.
      *
      * @param Psr\Container\ContainerInterface $di a service container
      */
-    public function __construct(ContainerInterface $di)
+    public function __construct(ContainerInterface $di, $entryId)
     {
         parent::__construct($di);
+        $this->entryId = $entryId;
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Details of the item",
+                "legend" => "Kommentera",
             ],
             [
                 "comment" => [
@@ -33,7 +38,7 @@ class CreateForm extends FormModel
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Create item",
+                    "value" => "Posta kommentar",
                     "callback" => [$this, "callbackSubmit"]
                 ],
             ]
@@ -52,7 +57,10 @@ class CreateForm extends FormModel
     {
         $comments = new Comments();
         $comments->setDb($this->di->get("dbqb"));
-        $comments->column1  = $this->form->value("comment");
+        $comments->comment = $this->form->value("comment");
+        $comments->entryId = $this->entryId;
+        $comments->userId = $this->di->get("session")->get("userId");
+
         $comments->save();
         return true;
     }
@@ -66,7 +74,7 @@ class CreateForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $this->di->get("response")->redirect("comments")->send();
+        $this->di->get("response")->redirect("forum/viewquestion/" . $this->entryId)->send();
     }
 
 

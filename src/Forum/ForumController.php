@@ -6,6 +6,10 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\Forum\HTMLForm\CreateForm;
 use Anax\User\User;
+use Anax\Tags\Tag2Forum;
+use Anax\Tags\Tags;
+use Anax\Comments\Comments;
+use Anax\Answers\Answers;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -52,9 +56,12 @@ class ForumController implements ContainerInjectableInterface
         $forum = new Forum();
         $forum->setDb($this->di->get("dbqb"));
 
-        $page->add("forum/view-all", [
-            "items" => $forum->findAll(),
-        ]);
+        $data = [
+            "questions" => $forum->joinForumandUser(),
+        ];
+
+
+        $page->add("forum/view-all", $data);
 
         return $page->render([
             "title" => "A collection of items",
@@ -100,9 +107,28 @@ class ForumController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $user->find("userId", $question->userId);
 
+
+        $comments = new Comments();
+        $comments->setDb($this->di->get("dbqb"));
+        $commentHolder = $comments->findAllWhere("Comments.entryId = ?", $id);
+
+
+
+
+        $tag2forum = new Tag2Forum();
+        $tag2forum->setDb($this->di->get("dbqb"));
+        $tagsHere = $tag2forum->findAllWhere("Tag2Forum.questionId = ?", $id);
+
+        $answers = new Answers();
+        $answers->setDb($this->di->get("dbqb"));
+        $answers->find("questionId", $id);
+
         $data = [
             "question" => $question,
-            "user" => $user
+            "user" => $user,
+            "tags" => $tagsHere,
+            "comments" => $question->joinCommentandUser(),
+            "answers" => $question->joinAnswersandUser(),
         ];
 
 

@@ -1,19 +1,20 @@
 <?php
 
-namespace Anax\Comments;
+namespace Anax\Tags;
 
 use Anax\DatabaseActiveRecord\ActiveRecordModel;
 
 /**
  * A database driven model using the Active Record design pattern.
  */
-class Comments extends ActiveRecordModel
+class Tag2Forum extends ActiveRecordModel
 {
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Comments";
-    protected $tableIdColumn = "commentId";
+    protected $tableName = "Tag2Forum";
+    protected $tableIdColumn = "id";
+
 
 
     /**
@@ -21,9 +22,7 @@ class Comments extends ActiveRecordModel
      *
      * @var integer $id primary key auto incremented.
      */
-    public $commentId;
-    public $entryId;
-    public $userId;
-    public $answerId;
-    public $comment;
+    public $id;
+    public $tagId;
+    public $questionId;
 }

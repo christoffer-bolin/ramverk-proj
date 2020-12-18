@@ -20,7 +20,6 @@ $idCheck = $this->di->get("session")->get("userId");
 <div style="height: auto; border: 1px solid black; padding-left: 5px;">
     <p><b>Användarnamn:</b> <?= $user->username ?></p>
     <p><b>E-post:</b> <?= $user->email ?></p>
-    <p><b>Aktivitetspoäng:</b> <?= $user->points ?></p>
     <p><img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($user->email) ?>?s=200&d=mm"></p>
 
     <?php

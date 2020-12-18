@@ -6,7 +6,8 @@ use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
 use Anax\Forum\Forum;
 use Anax\User\User;
-//use Anax\Tags\Tags;
+use Anax\Tags\Tags;
+use Anax\Tags\Tag2Forum;
 
 /**
  * Form to create an item.
@@ -68,12 +69,28 @@ class CreateForm extends FormModel
         $forum->setDb($this->di->get("dbqb"));
         $forum->rubrik  = $this->form->value("rubrik");
         $forum->question = $this->form->value("question");
-
         $forum->userId = $this->di->get("session")->get("userId");
-
         $forum->save();
 
 
+        // handle tags
+        $tags = explode(' ', $this->form->value("tags"));
+        foreach ($tags as $tag)
+        {
+            $tagHolder = new Tags();
+            $tag2forum = new Tag2Forum();
+            $tagHolder->setDb($this->di->get("dbqb"));
+            $tagHolder->find("tag", $tag);
+            if (!$tagHolder->tagId && $tag != "") {
+                $tagHolder->tag = $tag;
+                $tagHolder->save();
+                $tagHolder->find("tag", $tag);
+            }
+            $tag2forum->setDb($this->di->get("dbqb"));
+            $tag2forum->tagId = $tagHolder->tagId;
+            $tag2forum->questionId = $forum->questionId;
+            $tag2forum->save();
+        }
         return true;
     }
 

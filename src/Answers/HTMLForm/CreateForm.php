@@ -61,6 +61,7 @@ class CreateForm extends FormModel
         $question->find("questionId", $this->questionId);
 
         $answers->questionId = $question->questionId;
+        $answers->userId = $this->di->get("session")->get("userId");
         $answers->save();
         return true;
     }

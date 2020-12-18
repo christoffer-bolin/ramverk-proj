@@ -10,7 +10,9 @@ namespace Anax\View;
 //echo showEnvironment(get_defined_vars());
 
 // Gather incoming variables and use default values if not set
-$items = isset($items) ? $items : null;
+$data = isset($data) ? $data : null;
+//var_dump($data);
+//var_dump($questions);
 
 // Create urls for navigation
 $urlToCreate = url("forum/create");
@@ -27,7 +29,7 @@ $idCheck = $this->di->get("session")->get("userId");
 <?php } ?>
 
 
-<?php if (!$items) : ?>
+<?php if (!$questions) : ?>
     <p>Tyvärr, tomt på frågor! Ställ en?</p>
 <?php
     return;
@@ -36,11 +38,16 @@ endif;
 
 <table>
     <tr>
+        <th>Avatar</th>
+        <th>Skapare</th>
         <th>Rubriker</th>
     </tr>
-    <?php foreach ($items as $item) : ?>
+    <?php foreach ($questions as $item) :
+    //var_dump($item); ?>
     <tr>
         <td>
+            <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
+            <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a>
             <a href="<?= url("forum/viewquestion/{$item->questionId}"); ?>"><?= $item->rubrik ?></a>
         </td>
     </tr>

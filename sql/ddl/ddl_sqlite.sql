@@ -6,8 +6,7 @@ CREATE TABLE User (
     "userId" INTEGER PRIMARY KEY NOT NULL,
     "username" TEXT UNIQUE NOT NULL,
     "password" TEXT NOT NULL,
-    "email" TEXT,
-    "points" INTEGER DEFAULT 0
+    "email" TEXT
 );
 
 --
@@ -28,7 +27,8 @@ DROP TABLE IF EXISTS Answers;
 CREATE TABLE Answers (
     "answerId" INTEGER PRIMARY KEY NOT NULL,
     "answer" TEXT NOT NULL,
-    "questionId" INTEGER NOT NULL
+    "questionId" INTEGER NOT NULL,
+    "userId" INTEGER  NOT NULL
 );
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE Tags (
 DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments (
     "commentId" INTEGER PRIMARY KEY NOT NULL,
-    "questionId" INTEGER NOT NULL,
+    "entryId" INTEGER NOT NULL,
     "userId" INTEGER,
     "answerId" INTEGER,
     "comment" TEXT

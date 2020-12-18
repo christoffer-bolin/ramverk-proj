@@ -13,6 +13,7 @@ class Tags extends ActiveRecordModel
      * @var string $tableName name of the database table.
      */
     protected $tableName = "Tags";
+    protected $tableIdColumn = "tagId";
 
 
 
@@ -21,7 +22,6 @@ class Tags extends ActiveRecordModel
      *
      * @var integer $id primary key auto incremented.
      */
-    public $id;
-    public $column1;
-    public $column2;
+    public $tagId;
+    public $tag;
 }

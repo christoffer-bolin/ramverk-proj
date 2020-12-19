@@ -1,8 +1,8 @@
 <?php
 
 namespace Anax\View;
-
-$questions = isset($questions) ? $questions : null;
+//var_dump($comments);
+//$questions = isset($questions) ? $questions : null;
 //$comments = isset($comments) ? $comments : null;
 $user = isset($user) ? $user : null;
 
@@ -30,6 +30,19 @@ $idCheck = $this->di->get("session")->get("userId");
             <?php foreach ($questions as $question) : ?>
             <li>
                 <a href="<?= url("forum/viewquestion/" . $question->questionId) ?>"><?= $question->rubrik ?></a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+    <?php
+    if ($comments) : ?>
+    <div>
+        <h3><?= sizeof($comments) ?> kommentarer gjorda i forumet</h3>
+        <ul class="userpageul">
+            <?php foreach ($comments as $item) : ?>
+            <li>
+                <a href="<?= url("forum/viewquestion/" . $item->entryId) ?>"><?= $item->comment ?></a>
             </li>
             <?php endforeach; ?>
         </ul>

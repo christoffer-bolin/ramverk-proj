@@ -4,7 +4,7 @@ namespace Anax\View;
 
 //var_dump($question);
 // var_dump($user);
-// var_dump($tags);
+//var_dump($tags);
 //var_dump($comments);
 //var_dump($answers);
 
@@ -12,6 +12,7 @@ namespace Anax\View;
 $answerQuestion = " <a href=" . url("answers/create/" . $question->questionId) ."><button type='button'><b>Svara på fråga</b></button></a>";
 $commentQuestion = " <a href=" . url("comments/create/" . $question->questionId) ."><button type='button'><b>Kommentera fråga</b></button></a>";
 //$commentAnswer = " <a href=" . url("comments/create/" . $answers->answerId) ."><button type='button'><b>Kommentera svar</b></button></a>";
+$idCheck = $this->di->get("session")->get("userId");
 /**
  * View to display all books.
  */
@@ -25,8 +26,23 @@ $commentQuestion = " <a href=" . url("comments/create/" . $question->questionId)
 ?><h1><?= $question->rubrik ?> <i>av: <?= $user->username ?><img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($user->email) ?>?s=100&d=mm"></i></h1>
 <p><?=  $question->question ?><br>
 
-<br><?= $answerQuestion ?><?= $commentQuestion ?><p>
+
+    <?php if ($idCheck) { ?>
+        <p>
+            <br><?= $answerQuestion ?><?= $commentQuestion ?>
+        </p>
+    <?php } ?>
+
 <h5>#Taggar</h5>
+
+<?php if ($tags) { ?>
+    <p>
+        <?php
+        foreach ($tags as $value) : ?>
+            <a href=""><?= $value->tag ?></a>
+         <?php endforeach; ?>
+    </p>
+<?php } ?>
 
 <h5>Kommentarer</h5>
 
@@ -57,7 +73,6 @@ if (!$commentsHold) { ?>
 
 <h5>Tidigare svar</h5>
 <p>
-
 
 <?php
 $answersHold = [];

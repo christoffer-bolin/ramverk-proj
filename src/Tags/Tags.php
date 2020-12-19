@@ -24,4 +24,15 @@ class Tags extends ActiveRecordModel
      */
     public $tagId;
     public $tag;
+
+    public function joinTagsandTag2Forum()
+    {
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select()
+                        ->from("Tag2Forum")
+                        ->join("Tags", "Tag2Forum.tagId = Tags.tagId")
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
 }

@@ -62,5 +62,7 @@ DROP TABLE IF EXISTS Tag2Forum;
 CREATE TABLE Tag2Forum (
     "id" INTEGER PRIMARY KEY NOT NULL,
     "tagId" INTEGER,
-    "questionId" INTEGER
+    "questionId" INTEGER,
+    FOREIGN KEY("tagId") REFERENCES Tags("tagId"),
+    FOREIGN KEY("questionId") REFERENCES Forum("questionId")
 );

@@ -23,6 +23,11 @@ $navbar = [
             "url" => "forum",
             "title" => "Forum.",
         ],
+        [
+            "text" => "Taggar",
+            "url" => "tags",
+            "title" => "Taggar.",
+        ],
     ],
 ];
 

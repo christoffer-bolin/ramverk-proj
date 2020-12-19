@@ -9,6 +9,7 @@ use Anax\User\HTMLForm\CreateUserForm;
 use Anax\User\HTMLForm\EditProfile;
 use Anax\Forum\Forum;
 use Anax\Answers\Answers;
+use Anax\Comments\Comments;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -154,14 +155,21 @@ class UserController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $user->find("userId", $id);
 
+
         $forum = new Forum();
         $forum->setDb($this->di->get("dbqb"));
         $questions = $forum->findAllWhere("forum.userId = ?", $id);
 
+
+        $comments = new Comments();
+        $comments->setDb($this->di->get("dbqb"));
+        $userComments = $comments->findAllWhere("Comments.userId = ?", $id);
+
         //var_dump($questions);
         $data = [
             "user" => $user,
-            "questions" => $questions
+            "questions" => $questions,
+            "comments" => $userComments,
         ];
 
 

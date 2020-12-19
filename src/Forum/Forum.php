@@ -28,17 +28,17 @@ class Forum extends ActiveRecordModel
     public $userId;
 
 
-    public function joinTagandForum()
-    {
-        $this->checkDb();
-        return $this->db->connect()
-                        ->select()
-                        ->from($this->tableName)
-                        ->join("Tag2Forum", "Forum.questionId = Tag2Forum.questionId")
-                        ->join("Tags", "Tag2Forum.tagId = Tags.tagId")
-                        ->execute()
-                        ->fetchAllClass(get_class($this));
-    }
+    // public function joinTagandForum()
+    // {
+    //     $this->checkDb();
+    //     return $this->db->connect()
+    //                     ->select()
+    //                     ->from($this->tableName)
+    //                     ->join("Tag2Forum", "Forum.questionId = Tag2Forum.questionId")
+    //                     ->join("Tags", "Tag2Forum.tagId = Tags.tagId")
+    //                     ->execute()
+    //                     ->fetchAllClass(get_class($this));
+    // }
 
     public function joinForumandUser()
     {
@@ -70,6 +70,20 @@ class Forum extends ActiveRecordModel
                         ->from("User")
                         ->join("Answers", "User.userId = Answers.userId")
                         ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
+
+    public function joinTagsandTag2Forum($id)
+    {
+        $this->checkDb();
+        $params = is_array($id) ? $id : [$id];
+        return $this->db->connect()
+                        ->select()
+                        ->from("Tag2Forum")
+                        ->where("Tag2Forum.questionId = ?")
+                        ->join("Forum", "Tag2Forum.questionId = Forum.questionId")
+                        ->join("Tags", "Tag2Forum.tagId = Tags.tagId")
+                        ->execute($params)
                         ->fetchAllClass(get_class($this));
     }
 }

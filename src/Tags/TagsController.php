@@ -5,7 +5,9 @@ namespace Anax\Tags;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Anax\Tags\HTMLForm\CreateForm;
-
+use Anax\Tags\Tag2Forum;
+use Anax\Forum\Forum;
+use Anax\User\User;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -52,8 +54,9 @@ class TagsController implements ContainerInjectableInterface
         $tags = new Tags();
         $tags->setDb($this->di->get("dbqb"));
 
-        $page->add("tags/crud/view-all", [
-            "items" => $tags->findAll(),
+
+        $page->add("tags/view-all", [
+            "tags" => $tags->findAll(),
         ]);
 
         return $page->render([
@@ -61,71 +64,40 @@ class TagsController implements ContainerInjectableInterface
         ]);
     }
 
-
-
     /**
-     * Handler with form to create a new item.
+     * Show all items.
      *
      * @return object as a response object
      */
-    public function createAction() : object
+    public function viewTagAction(int $id) : object
     {
         $page = $this->di->get("page");
-        $form = new CreateForm($this->di);
-        $form->check();
+        $tags = new Tags();
+        $tags->setDb($this->di->get("dbqb"));
 
-        $page->add("tags/crud/create", [
-            "form" => $form->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "Create a item",
-        ]);
-    }
+        $tagsforum = new Tag2Forum();
+        $tagsforum->setDb($this->di->get("dbqb"));
 
 
+        $tagArray = $tags->joinTagsandTag2Forum();
 
-    /**
-     * Handler with form to delete an item.
-     *
-     * @return object as a response object
-     */
-    public function deleteAction() : object
-    {
-        $page = $this->di->get("page");
-        $form = new DeleteForm($this->di);
-        $form->check();
 
-        $page->add("tags/crud/delete", [
-            "form" => $form->getHTML(),
-        ]);
+        $questions = new Forum();
+        $questions->setDb($this->di->get("dbqb"));
+        $questionHolder = $questions->findAll();
+
+        $data = [
+            "tags" => $tagArray,
+            "tagId" => $id,
+            "questions" => $questionHolder,
+        ];
+
+        //var_dump($data);
+
+        $page->add("tags/view-tag", $data);
 
         return $page->render([
-            "title" => "Delete an item",
-        ]);
-    }
-
-
-
-    /**
-     * Handler with form to update an item.
-     *
-     * @param int $id the id to update.
-     *
-     * @return object as a response object
-     */
-    public function updateAction(int $id) : object
-    {
-        $page = $this->di->get("page");
-        $form = new UpdateForm($this->di, $id);
-        $form->check();
-
-        $page->add("tags/crud/update", [
-            "form" => $form->getHTML(),
-        ]);
-
-        return $page->render([
-            "title" => "Update an item",
+            "title" => "Linkat till tagg",
         ]);
     }
 }

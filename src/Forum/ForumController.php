@@ -112,9 +112,6 @@ class ForumController implements ContainerInjectableInterface
         $comments->setDb($this->di->get("dbqb"));
         $commentHolder = $comments->findAllWhere("Comments.entryId = ?", $id);
 
-
-
-
         $tag2forum = new Tag2Forum();
         $tag2forum->setDb($this->di->get("dbqb"));
         $tagsHere = $tag2forum->findAllWhere("Tag2Forum.questionId = ?", $id);
@@ -126,7 +123,7 @@ class ForumController implements ContainerInjectableInterface
         $data = [
             "question" => $question,
             "user" => $user,
-            "tags" => $tagsHere,
+            "tags" => $question->joinTagsandTag2Forum($id),
             "comments" => $question->joinCommentandUser(),
             "answers" => $question->joinAnswersandUser(),
         ];

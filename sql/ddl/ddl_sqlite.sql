@@ -47,7 +47,7 @@ CREATE TABLE Tags (
 DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments (
     "commentId" INTEGER PRIMARY KEY NOT NULL,
-    "entryId" INTEGER NOT NULL,
+    "entryId" INTEGER,
     "userId" INTEGER,
     "answerId" INTEGER,
     "comment" TEXT

@@ -38,9 +38,8 @@ endif;
 
 <table>
     <tr>
-        <th>Avatar</th>
         <th>Skapare</th>
-        <th>Rubriker</th>
+        <th>Rubrik</th>
     </tr>
     <?php foreach ($questions as $item) :
     //var_dump($item); ?>

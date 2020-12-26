@@ -6991,3 +6991,7 @@ button:hover {
     margin-bottom:10px;
     color: green;
 }
+
+.commentReply {
+    margin-left: 50px;
+}

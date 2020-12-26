@@ -86,4 +86,16 @@ class Forum extends ActiveRecordModel
                         ->execute($params)
                         ->fetchAllClass(get_class($this));
     }
+
+
+    public function joinCommentsandUserandAnswers()
+    {
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select()
+                        ->from("Comments")
+                        ->join("Answers", "Comments.answerId = Answers.answerId")
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
 }

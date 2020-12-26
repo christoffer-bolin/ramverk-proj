@@ -7,6 +7,7 @@ use Anax\Commons\ContainerInjectableTrait;
 use Anax\Comments\HTMLForm\CreateForm;
 use Anax\User\User;
 use Anax\Forum\Forum;
+use Anax\Comments\HTMLForm\CreateReplyForm;
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
 // use Anax\Route\Exception\InternalErrorException;
@@ -89,4 +90,32 @@ class CommentsController implements ContainerInjectableInterface
             "title" => "Kommentar",
         ]);
     }
+
+    /**
+     * Handler with form to create a new item.
+     *
+     * @return object as a response object
+     */
+    public function createReplyAction(int $id) : object
+    {
+
+        $userId = $this->di->get("session")->get("userId");
+
+        $page = $this->di->get("page");
+        $form = new CreateReplyForm($this->di, $id);
+        $form->check();
+
+
+        $forum = new Forum();
+        $forum->setDb($this->di->get("dbqb"));
+
+        $page->add("comments/createReply", [
+            "form" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "Kommentar",
+        ]);
+    }
+
 }

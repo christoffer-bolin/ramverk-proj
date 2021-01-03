@@ -7,6 +7,7 @@ use Anax\Commons\ContainerInjectableTrait;
 use Anax\User\User;
 use Anax\Forum\Forum;
 use Anax\Tags\Tags;
+
 // use Anax\User\HTMLForm\UserLoginForm;
 // use Anax\User\HTMLForm\CreateUserForm;
 // use Anax\User\HTMLForm\EditProfile;
@@ -90,5 +91,4 @@ class FrontpageController implements ContainerInjectableInterface
             "title" => $title,
         ]);
     }
-
 }

@@ -6,7 +6,6 @@ use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
 use Anax\User\User;
 
-
 /**
  * Example of FormModel implementation.
  */

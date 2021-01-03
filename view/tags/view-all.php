@@ -13,7 +13,7 @@ namespace Anax\View;
 
     ?>
     <p>
-        <?php foreach ($tags as $item): ?>
+        <?php foreach ($tags as $item) : ?>
             <a href="<?= url("tags/view-tag/{$item->tagId}"); ?>"><?= $item->tag ?></a><br>
         <?php endforeach; ?>
     </p>

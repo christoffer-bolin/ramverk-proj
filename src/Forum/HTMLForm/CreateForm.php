@@ -75,8 +75,7 @@ class CreateForm extends FormModel
 
         // handle tags
         $tags = explode(' ', $this->form->value("tags"));
-        foreach ($tags as $tag)
-        {
+        foreach ($tags as $tag) {
             $tagHolder = new Tags();
             $tag2forum = new Tag2Forum();
             $tagHolder->setDb($this->di->get("dbqb"));

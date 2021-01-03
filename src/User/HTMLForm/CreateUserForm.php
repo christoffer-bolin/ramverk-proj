@@ -71,7 +71,7 @@ class CreateUserForm extends FormModel
 
 
         // Check password matches
-        if ($password !== $passwordAgain ) {
+        if ($password !== $passwordAgain) {
             $this->form->rememberValues();
             $this->form->addOutput("Password did not match.");
             return false;
@@ -79,7 +79,7 @@ class CreateUserForm extends FormModel
 
 
         // ny Userklass
-        $user = New User();
+        $user = new User();
 
         //koppla upp mot db (CreateForm.php Book)
         $user->setDb($this->di->get("dbqb"));

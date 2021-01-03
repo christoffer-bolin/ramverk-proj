@@ -1,6 +1,7 @@
 <?php
 
 namespace Anax\View;
+
 //var_dump($comments);
 //$questions = isset($questions) ? $questions : null;
 //$comments = isset($comments) ? $comments : null;

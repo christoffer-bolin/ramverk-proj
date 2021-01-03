@@ -12,7 +12,6 @@ use Anax\Answers\Answers;
 use Anax\Comments\Comments;
 use Anax\TextFilter\TextFilter;
 
-
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
 // use Anax\Route\Exception\InternalErrorException;
@@ -134,7 +133,7 @@ class UserController implements ContainerInjectableInterface
         $userId = $this->di->get("session")->get("userId");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
-        $user->find("userId",  $userId);
+        $user->find("userId", $userId);
 
         $form = new EditProfile($this->di, $id);
         $form->check();

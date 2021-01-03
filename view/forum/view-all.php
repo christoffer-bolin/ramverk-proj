@@ -33,7 +33,7 @@ $idCheck = $this->di->get("session")->get("userId");
 
     <?php if (!$questions) : ?>
         <p>Tyvärr, tomt på frågor! Ställ en?</p>
-    <?php
+        <?php
         return;
     endif;
     ?>

@@ -41,7 +41,7 @@ $idCheck = $this->di->get("session")->get("userId");
         <?php
         foreach ($tags as $value) : ?>
             <a href=""><?= $value->tag ?></a>
-         <?php endforeach; ?>
+        <?php endforeach; ?>
     </p>
 <?php } ?>
 
@@ -95,7 +95,7 @@ foreach ($comments as $value) {
 }
 
 
-    foreach ($answersHold as $item) : ?>
+foreach ($answersHold as $item) : ?>
     <tr>
         <td>
             <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
@@ -110,5 +110,5 @@ foreach ($comments as $value) {
             <a href="<?= url("comments/createReply/{$item->questionId}"); ?>" class="button">Kommentera svar</a><br><br>
         </td>
     </tr>
-    <?php endforeach; ?>
+<?php endforeach; ?>
 </p>

@@ -22,7 +22,7 @@ Built in PHP with the framework Anax and database SQLite.
 
 `chmod 666 data/db.sqlite`
 
-`sqlite3 data/db.sqlite < sql/ddl/all_sqlite.sql`
+`sqlite3 data/db.sqlite < sql/ddl/ddl_sqlite.sql`
 
 Steps to use:
 

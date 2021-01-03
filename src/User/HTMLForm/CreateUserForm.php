@@ -28,11 +28,13 @@ class CreateUserForm extends FormModel
                 "username" => [
                     "type"        => "text",
                     "label" => "Användarnamn:",
+                    "validation" => ["not_empty"],
                 ],
 
                 "password" => [
                     "type"        => "password",
                     "label" => "Lösenord:",
+                    "validation" => ["not_empty"],
                 ],
 
                 "password-again" => [

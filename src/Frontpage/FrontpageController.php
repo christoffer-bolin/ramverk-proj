@@ -4,6 +4,9 @@ namespace Anax\Frontpage;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
+use Anax\User\User;
+use Anax\Forum\Forum;
+use Anax\Tags\Tags;
 // use Anax\User\HTMLForm\UserLoginForm;
 // use Anax\User\HTMLForm\CreateUserForm;
 // use Anax\User\HTMLForm\EditProfile;
@@ -55,10 +58,34 @@ class FrontpageController implements ContainerInjectableInterface
      */
     public function indexActionGet() : object
     {
+        // var_dump($this->di);
         $page = $this->di->get("page");
         $title = "Startsida";
 
-        $page->add("frontpage/frontpage");
+        $question = new Forum();
+        $question->setDb($this->di->get("dbqb"));
+
+        $tag = new Tags();
+        $tag->setDb($this->di->get("dbqb"));
+        $tags = $tag->countTags();
+
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+
+        $mostQuestionsAsked = $user->findMostActiveFrontpage("Forum", "Forum.userId = User.userId");
+        $mostReplysPosted = $user->findMostActiveFrontpage("Answers", "Answers.userId = User.userId");
+        $mostCommentsMade = $user->findMostActiveFrontpage("Comments", "Comments.userId = User.userId");
+
+
+        $page->add("frontpage/frontpage", [
+            "latestQuestions" => $question->joinTwoTables("User", "Forum.userId = User.userId", "Forum.questionId DESC LIMIT 3"),
+            "popularTags" => $tags,
+            "mostQuestionsAsked" => $mostQuestionsAsked,
+            "mostReplysPosted" => $mostReplysPosted,
+            "mostCommentsMade" => $mostCommentsMade
+        ]);
+
+
         return $page->render([
             "title" => $title,
         ]);

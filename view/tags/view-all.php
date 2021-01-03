@@ -4,7 +4,7 @@ namespace Anax\View;
 //var_dump($tags);
 ?>
 
-<article class="article">
+<article class="article" style="min-height:360px;">
     <h1>Här finns aktuella taggar</h1>
     <?php
     if (!$tags) { ?>

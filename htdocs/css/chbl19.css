@@ -6995,3 +6995,33 @@ button:hover {
 .commentReply {
     margin-left: 50px;
 }
+
+.frontpagediv {
+    width: 50%;
+    float: left;
+    height: 200px;
+    padding-bottom: 250px;
+    text-align: center;
+}
+
+.frontpagediv li {
+    list-style: square;
+}
+
+.mfu {
+    width: 33%;
+    float: left;
+    height: 140px;
+    text-align: center;
+}
+
+.forumviewer {
+    width: 50%;
+    border: 1px solid black;
+    padding: 1em;
+    float: left;
+}
+
+.forumviewer a {
+    padding-right: 1em;
+}

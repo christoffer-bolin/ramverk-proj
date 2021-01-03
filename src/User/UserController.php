@@ -10,6 +10,8 @@ use Anax\User\HTMLForm\EditProfile;
 use Anax\Forum\Forum;
 use Anax\Answers\Answers;
 use Anax\Comments\Comments;
+use Anax\TextFilter\TextFilter;
+
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -170,6 +172,7 @@ class UserController implements ContainerInjectableInterface
             "user" => $user,
             "questions" => $questions,
             "comments" => $userComments,
+            "filter" => new TextFilter(),
         ];
 
 

@@ -35,4 +35,19 @@ class Tags extends ActiveRecordModel
                         ->execute()
                         ->fetchAllClass(get_class($this));
     }
+
+
+    public function countTags()
+    {
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select("*, count(Tag2Forum.tagId) as total")
+                        ->from($this->tableName)
+                        ->join("Tag2Forum", "Tag2Forum.tagId = Tags.tagId")
+                        ->groupBy("Tags.tagId")
+                        ->orderBy("total DESC")
+                        ->limit(3)
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
 }

@@ -25,7 +25,7 @@ $idCheck = $this->di->get("session")->get("userId");
 
 
 ?><h1><?= $question->rubrik ?> <i>av: <?= $user->username ?><img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($user->email) ?>?s=100&d=mm"></i></h1>
-<p><?=  $question->question ?><br>
+<p><?=  $filter->parse($question->question, ["markdown"])->text ?><br>
 
 
     <?php if ($idCheck) { ?>
@@ -66,7 +66,7 @@ if (!$commentsHold) { ?>
         <td>
             <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
             <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a><i> sa:</i>
-            <?= $item->comment ?><br>
+            <?= $filter->parse($item->comment, ["markdown"])->text ?><br>
         </td>
     </tr>
     <?php endforeach; ?>
@@ -95,20 +95,19 @@ foreach ($comments as $value) {
 }
 
 
-    foreach ($answersHold as $item) :
-        ?>
+    foreach ($answersHold as $item) : ?>
     <tr>
         <td>
             <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
             <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a><i> sa:</i>
-            <?= $item->answer ?><br><p class="commentReply">
+            <?= $filter->parse($item->answer, ["markdown"])->text ?><br><p class="commentReply">
             <?php foreach ($replyHolder as $key) {
                 if ($key->answerId == $item->answerId) { ?>
                     <a href="<?= url("user/userpage/{$key->userId}"); ?>"><?= $key->username ?></a><i> kommenterade:</i>
-                    <?= $key->comment ?><br><?php
+                    <?= $filter->parse($key->comment, ["markdown"])->text ?><br><?php
                 }
             } ?></p>
-            <a href="<?= url("comments/createReply/{$item->answerId}"); ?>" class="button">Kommentera svar</a><br><br>
+            <a href="<?= url("comments/createReply/{$item->questionId}"); ?>" class="button">Kommentera svar</a><br><br>
         </td>
     </tr>
     <?php endforeach; ?>

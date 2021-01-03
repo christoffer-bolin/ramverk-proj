@@ -1,3 +1,3 @@
-#### Footer col 2
+#### Varför
 
-under kursens gång kommer här uppdateras med viktiga saker!
+En hemsida i kursen ramverk1 på BTH HT2020

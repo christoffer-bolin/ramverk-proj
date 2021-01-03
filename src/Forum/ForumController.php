@@ -10,6 +10,8 @@ use Anax\Tags\Tag2Forum;
 use Anax\Tags\Tags;
 use Anax\Comments\Comments;
 use Anax\Answers\Answers;
+use Anax\TextFilter\TextFilter;
+
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -126,6 +128,7 @@ class ForumController implements ContainerInjectableInterface
             "tags" => $question->joinTagsandTag2Forum($id),
             "comments" => $question->joinCommentandUser(),
             "answers" => $question->joinAnswersandUser(),
+            "filter" => new TextFilter(),
         ];
 
 

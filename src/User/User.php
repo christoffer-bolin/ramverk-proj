@@ -44,4 +44,18 @@ class User extends ActiveRecordModel
          $this->find("username", $username);
          return password_verify($password, $this->password);
      }
+
+     public function findMostActiveFrontpage($join, $where)
+     {
+         $this->checkDb();
+         return $this->db->connect()
+                         ->select("*, count(User.userId) as total")
+                         ->from($this->tableName)
+                         ->join($join, $where)
+                         ->groupBy("User.userId")
+                         ->orderBy("total DESC")
+                         ->limit("3")
+                         ->execute()
+                         ->fetchAllClass(get_class($this));
+     }
 }

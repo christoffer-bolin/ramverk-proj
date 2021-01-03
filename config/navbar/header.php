@@ -19,6 +19,11 @@ $navbar = [
             "title" => "Första sidan, börja här.",
         ],
         [
+        "text" => "Om",
+        "url" => "om",
+        "title" => "Om denna webbplats.",
+        ],
+        [
             "text" => "Forum",
             "url" => "forum",
             "title" => "Forum.",

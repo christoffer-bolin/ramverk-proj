@@ -1,3 +1,3 @@
-#### Footer col 3
+#### Vad
 
-Även här kommer de ersättas med något viktigt och relevant!
+Projektet innefattar ett diskussionsforum för valfritt ämne.

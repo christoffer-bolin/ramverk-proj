@@ -88,6 +88,18 @@ class Forum extends ActiveRecordModel
     }
 
 
+    public function joinTwoTables($joinTable, $where, $orderBy = null)
+    {
+        $this->checkDb();
+        return $this->db->connect()
+                        ->select()
+                        ->from($this->tableName)
+                        ->join($joinTable, $where)
+                        ->orderBy($orderBy)
+                        ->execute()
+                        ->fetchAllClass(get_class($this));
+    }
+
     public function joinCommentsandUserandAnswers()
     {
         $this->checkDb();

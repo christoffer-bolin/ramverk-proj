@@ -36,13 +36,35 @@ $idCheck = $this->di->get("session")->get("userId");
     <?php endif; ?>
 
     <?php
+//    var_dump($comments);
+
+    $entryIdHolder = [];
+    $commentIdHolder = [];
+
+    foreach ($comments as $key) {
+        if ($key->entryId) {
+            $entryIdHolder[] = $key;
+        } elseif ($key->commentId) {
+            $commentIdHolder[] = $key;
+        }
+    }
+
+// var_dump($entryIdHolder);
+//var_dump($commentIdHolder);
+
+
     if ($comments) : ?>
     <div>
         <h3><?= sizeof($comments) ?> kommentarer gjorda i forumet</h3>
         <ul class="userpageul">
-            <?php foreach ($comments as $item) : ?>
+            <?php foreach ($entryIdHolder as $item) : ?>
             <li>
-                <a href="<?= url("forum/viewquestion/" . $item->entryId) ?>"><?= $item->comment ?></a>
+                <a href="<?= url("forum/viewquestion/" . $item->entryId) ?>"><?= $filter->parse($item->comment, ["markdown"])->text ?></a>
+            </li>
+            <?php endforeach; ?>
+            <?php foreach ($commentIdHolder as $item) : ?>
+            <li>
+                <a href="<?= url("forum/viewquestion/" . $item->answerId) ?>"><?= $filter->parse($item->comment, ["markdown"])->text ?></a>
             </li>
             <?php endforeach; ?>
         </ul>

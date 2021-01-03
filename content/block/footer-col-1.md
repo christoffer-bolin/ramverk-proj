@@ -1,3 +1,4 @@
-#### Footer col 1
+#### Ansvarig
 
-En kurs med mycket nytt att lära!
+Ansvarig utgivare: Sten Hård
+rocksolid@mineralkungen.se

@@ -6,7 +6,7 @@ Built in PHP with the framework Anax and database SQLite.
 
 ### Download and install
 
-`git clone https://github.com/christoffer-bolin/ramverk1-proj.git`
+`git clone https://github.com/christoffer-bolin/ramverk-proj.git`
 
 `composer install`
 

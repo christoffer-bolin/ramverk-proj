@@ -10,6 +10,6 @@ svara på andras frågor, kommentera dem eller kommentera tidigare svar.
 
 Sidan håller också koll på de vanligaste taggarna, mest aktiva användarna och senaste inläggen gjorda.
 
-Sidan är byggd i Anax som är ett PHP-ramverk, använder sig av SQLite, Travis samt Scrutinizer.
+Sidan är byggd i Anax som är ett PHP-ramverk, använder sig av SQLite, Scrutinizer samt CircleCi (travis funkade fortfarande inte för mig tyvärr).
 
 Som syns i footern på sidan, heter jag Christoffer Bolin och går andra året på BTHs Webbprogrammeringsprogram.

@@ -32,7 +32,6 @@ jobs:
                     - ./vendor
                 key: v1-dependencies-{{ checksum "composer.json" }}
 
-            - run: make check
             - run: make test
 
 

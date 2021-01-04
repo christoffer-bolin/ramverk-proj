@@ -6643,10 +6643,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   text-decoration: none;
   transition: all 0.2s linear;
 }
-.site-logo-text a:hover {
-  color: #3B440D;
-  text-shadow: 2px -2px 2px #9FB129;
-}
+
 .site-logo-text-icon img {
   vertical-align: bottom;
   display: none;
@@ -6785,7 +6782,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
  * A footer style for dbwebb.se.
  */
 .outer-wrap-footer {
-  background-color: #424242;
+  background-color: #38464B;
   padding-top: 24px;
   padding-bottom: 48px;
 }
@@ -6939,6 +6936,17 @@ a.rm-button.rm-clicked .rm-button-face-2 {
  * My settings.
  */
 
+body {
+    background-image: url("../img/theme/pexels-mike-383559.jpg");
+}
+
+.main,
+.region-main {
+    background-color: white;
+    opacity: 0.88;
+    padding: 10px;
+}
+
 a:visited {
     color: #33b;
 }
@@ -6970,8 +6978,8 @@ h4 {
 }
 
 .my-navbar li a:hover {
-    background-color: black;
-    color: #ccc;
+    background-color: white;
+    color: black;
     text-decoration: underline;
 }
 
@@ -7024,4 +7032,36 @@ button:hover {
 
 .forumviewer a {
     padding-right: 1em;
+}
+
+.site_logo_text {
+    text-align: center;
+    font-size: 42px;
+    line-height: 1;
+    text-shadow: 2px -2px 2px #ccc;
+    color: black;
+}
+
+.site_logo_text a,
+.site_logo_text a:visited {
+    padding: 10px;
+    color: black;
+    font-size: 1em;
+}
+
+.site-logo-text a:hover {
+    color: pink;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+.region-header-col-1 a {
+    font-family: 'Staatliches', cursive;
+    color: #38464B;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-shadow: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    -webkit-text-stroke: 0.5px white; /* width and color */
 }

@@ -29,8 +29,11 @@ Built in PHP with the framework Anax and database SQLite.
 Steps to use:
 
 1 - Create a user
+
 2 - Log in to user
+
 3 - Update your profile with email, preferable joined to a gravatar
+
 4 - Post questions, answer other questions or comment in the forum!
 
 ### Validation/tests

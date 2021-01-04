@@ -15,7 +15,7 @@ namespace Anax\View;
         <h5>3 senaste inläggen</h5>
 
         <?php foreach ($latestQuestions as $question) {
-            ?> <li><a href="<?= url("forum/viewquestion/{$question->questionId}"); ?>"><?= $question->rubrik ?></a></li> <?php
+            ?> <li class="frontpageli"><a href="<?= url("forum/viewquestion/{$question->questionId}"); ?>"><?= $question->rubrik ?></a></li> <?php
         } ?>
     </div>
 
@@ -23,7 +23,7 @@ namespace Anax\View;
         <h5>3 mest populära taggarna</h5>
 
         <?php foreach ($popularTags as $tag) {
-            ?> <li><a href="<?= url("tags/view-tag/{$tag->tagId}"); ?>"><?= $tag->tag ?></a></li> <?php
+            ?> <li class="frontpageli"><a href="<?= url("tags/view-tag/{$tag->tagId}"); ?>"><?= $tag->tag ?></a></li> <?php
         } ?>
     </div>
 
@@ -33,21 +33,21 @@ namespace Anax\View;
         <div class="mfu">
             <h5>Inlägg</h5>
             <?php foreach ($mostQuestionsAsked as $mqa) {
-                ?> <li><a href="<?= url("user/userpage/{$mqa->userId}"); ?>"><?= $mqa->username ?></a></li> <?php
+                ?> <li class="frontpageli"><a href="<?= url("user/userpage/{$mqa->userId}"); ?>"><?= $mqa->username ?></a></li> <?php
             } ?>
         </div>
 
         <div class="mfu">
             <h5>Svar</h5>
             <?php foreach ($mostReplysPosted as $mrp) {
-                ?> <li><a href="<?= url("user/userpage/{$mrp->userId}"); ?>"><?= $mrp->username ?></a></li> <?php
+                ?> <li class="frontpageli"><a href="<?= url("user/userpage/{$mrp->userId}"); ?>"><?= $mrp->username ?></a></li> <?php
             } ?>
         </div>
 
         <div class="mfu">
             <h5>Kommentarer</h5>
             <?php foreach ($mostCommentsMade as $mcm) {
-                ?> <li><a href="<?= url("user/userpage/{$mcm->userId}"); ?>"><?= $mcm->username ?></a></li> <?php
+                ?> <li class="frontpageli"><a href="<?= url("user/userpage/{$mcm->userId}"); ?>"><?= $mcm->username ?></a></li> <?php
             } ?>
         </div>
 

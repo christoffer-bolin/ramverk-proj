@@ -21,8 +21,8 @@ $urlToCreate = url("forum/create");
 $idCheck = $this->di->get("session")->get("userId");
 
 ?>
-<article class="article" style="min-height:360px;">
-    <h1>Alla frågor</h1>
+<h1>Alla frågor</h1>
+<article class="articleforum" style="min-height:360px;">
 
     <?php if ($idCheck) { ?>
         <p>
@@ -43,7 +43,7 @@ $idCheck = $this->di->get("session")->get("userId");
         <div class="forumviewer">
             <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
             <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a>
-            <a href="<?= url("forum/viewquestion/{$item->questionId}"); ?>"><?= $item->rubrik ?></a>
+            skriver: <a href="<?= url("forum/viewquestion/{$item->questionId}"); ?>"><?= $item->rubrik ?></a>
         </div>
         <?php endforeach; ?>
 

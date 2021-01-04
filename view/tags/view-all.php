@@ -14,7 +14,9 @@ namespace Anax\View;
     ?>
     <p>
         <?php foreach ($tags as $item) : ?>
-            <a href="<?= url("tags/view-tag/{$item->tagId}"); ?>"><?= $item->tag ?></a><br>
+            <div class="tagDiv">
+                <a href="<?= url("tags/view-tag/{$item->tagId}"); ?>">#<?= $item->tag ?></a>
+            </div><br>
         <?php endforeach; ?>
     </p>
 </article>

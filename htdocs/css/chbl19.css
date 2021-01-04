@@ -6942,8 +6942,7 @@ body {
 
 .main,
 .region-main {
-    background-color: white;
-    opacity: 0.88;
+    background-color: rgba(255,255,255,.95);
     padding: 10px;
 }
 
@@ -6989,6 +6988,14 @@ button:hover {
 
 .gravatarpic {
     border: 2px solid black;
+    float: right;
+    margin-right: 10px;
+}
+
+.gravatarpicleft {
+    border: 2px solid black;
+    /* float: left; */
+    /* margin-right: 10px; */
 }
 
 .userpageul {
@@ -6997,11 +7004,37 @@ button:hover {
 
 .userpageul li {
     margin-bottom:10px;
-    color: green;
+    color: black;
+}
+
+.userpageul li a {
+    color: #38464B;
+}
+
+.questionlinks a {
+    color: #38464B;
+}
+
+.questionlinks {
+    color: #38464B;
 }
 
 .commentReply {
     margin-left: 50px;
+}
+
+.replyDiv {
+    margin-left: 50px;
+    border-left: 2px solid black;
+}
+
+.replyDiv a,
+i {
+    margin-left: 10px;
+}
+
+.replyDiv p {
+    margin-left: 40px;
 }
 
 .frontpagediv {
@@ -7023,15 +7056,22 @@ button:hover {
     text-align: center;
 }
 
+.articleforum {
+    text-align: left;
+    padding: 20px;
+    margin: auto;
+}
+
 .forumviewer {
-    width: 50%;
+    width: 100%;
     border: 1px solid black;
     padding: 1em;
-    float: left;
+    margin: 10px;
 }
 
 .forumviewer a {
     padding-right: 1em;
+    color: #38464B;
 }
 
 .site_logo_text {
@@ -7045,7 +7085,7 @@ button:hover {
 .site_logo_text a,
 .site_logo_text a:visited {
     padding: 10px;
-    color: black;
+    color: #38464B;
     font-size: 1em;
 }
 
@@ -7064,4 +7104,35 @@ button:hover {
     font-size: 30px;
     text-align: center;
     -webkit-text-stroke: 0.5px white; /* width and color */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+p.questiontext {
+    font-family: 'Roboto', sans-serif;
+}
+
+.taggtext {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.tagDiv {
+    float: left;
+    margin: 10px;
+}
+
+.tagDiv a {
+    text-decoration: none;
+    color: #38464B;
+    font-weight: bold;
+    position: absolute;
+}
+
+.tagDiv a:hover {
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.frontpageli a {
+    color: #38464B;
 }

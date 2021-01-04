@@ -26,6 +26,14 @@ $idCheck = $this->di->get("session")->get("userId");
 
 ?><h1><?= $question->rubrik ?> <i>av: <?= $user->username ?><img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($user->email) ?>?s=100&d=mm"></i></h1>
 <p><?=  $filter->parse($question->question, ["markdown"])->text ?><br>
+<p class="taggtext">Taggar:</p>
+<?php if ($tags) { ?>
+    <?php
+    foreach ($tags as $value) : ?>
+        <a href="<?= url("tags/view-tag/{$value->tagId}"); ?>"><?= $value->tag ?></a>
+    <?php endforeach; ?>
+<?php } ?>
+</p>
 
 
     <?php if ($idCheck) { ?>
@@ -33,17 +41,6 @@ $idCheck = $this->di->get("session")->get("userId");
             <br><?= $answerQuestion ?><?= $commentQuestion ?>
         </p>
     <?php } ?>
-
-<h5>#Taggar</h5>
-
-<?php if ($tags) { ?>
-    <p>
-        <?php
-        foreach ($tags as $value) : ?>
-            <a href=""><?= $value->tag ?></a>
-        <?php endforeach; ?>
-    </p>
-<?php } ?>
 
 <h5>Kommentarer</h5>
 
@@ -60,20 +57,14 @@ if (!$commentsHold) { ?>
 }
 
 ?>
-<p>
+
     <?php foreach ($commentsHold as $item) : ?>
-    <tr>
-        <td>
-            <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
-            <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a><i> sa:</i>
-            <?= $filter->parse($item->comment, ["markdown"])->text ?><br>
-        </td>
-    </tr>
+        <img class="gravatarpicleft" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
+        <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a><i> sa: </i><?= $filter->parse($item->comment, ["markdown"])->text ?>
     <?php endforeach; ?>
-</p>
+
 
 <h5>Tidigare svar</h5>
-<p>
 
 <?php
 $answersHold = [];
@@ -98,17 +89,17 @@ foreach ($comments as $value) {
 foreach ($answersHold as $item) : ?>
     <tr>
         <td>
-            <img class="gravatarpic" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
+            <img class="gravatarpicleft" src="https://www.gravatar.com/avatar/<?= md5($item->email) ?>?s=30&d=mm">
             <a href="<?= url("user/userpage/{$item->userId}"); ?>"><?= $item->username ?></a><i> sa:</i>
-            <?= $filter->parse($item->answer, ["markdown"])->text ?><br><p class="commentReply">
+            <?= $filter->parse($item->answer, ["markdown"])->text ?>
+            <div class="replyDiv">
             <?php foreach ($replyHolder as $key) {
                 if ($key->answerId == $item->answerId) { ?>
                     <a href="<?= url("user/userpage/{$key->userId}"); ?>"><?= $key->username ?></a><i> kommenterade:</i>
-                    <?= $filter->parse($key->comment, ["markdown"])->text ?><br><?php
+                    <?= $filter->parse($key->comment, ["markdown"])->text ?><?php
                 }
-            } ?></p>
-            <a href="<?= url("comments/createReply/{$item->questionId}"); ?>" class="button">Kommentera svar</a><br><br>
+            } ?></div>
+            <a class "commentReplyClass" href="<?= url("comments/createReply/{$item->questionId}"); ?>" class="button">Kommentera svar</a><br><br>
         </td>
     </tr>
 <?php endforeach; ?>
-</p>

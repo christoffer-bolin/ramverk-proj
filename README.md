@@ -1,5 +1,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/christoffer-bolin/ramverk-proj/badges/build.png?b=master)](https://scrutinizer-ci.com/g/christoffer-bolin/ramverk-proj/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/christoffer-bolin/ramverk-proj/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/christoffer-bolin/ramverk-proj/?branch=master)
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=svg)](https://circleci.com/gh/christoffer-bolin/ramverk-proj)
+
 
 # Project in the course Ramverk1, BTH 2020.
 Built in PHP with the framework Anax and database SQLite.

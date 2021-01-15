@@ -13,7 +13,6 @@ namespace Anax\View;
 $items = isset($items) ? $items : null;
 
 // Create urls for navigation
-$urlToViewItems = url("answers");
 
 
 

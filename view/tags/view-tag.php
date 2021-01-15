@@ -38,7 +38,9 @@ foreach ($questions as $value) {
 //var_dump($questionGrab);
 
 foreach ($questionGrab as $value) { ?>
-    <a href="<?= url("forum/viewquestion/{$value->questionId}"); ?>"><?= $value->rubrik ?></a><br>
+    <div class="tagDiv">
+        <a href="<?= url("forum/viewquestion/{$value->questionId}"); ?>"><?= $value->rubrik ?></a>
+    </div><br>
 <?php } ?>
 
 

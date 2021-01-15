@@ -13,14 +13,7 @@ namespace Anax\View;
 $items = isset($items) ? $items : null;
 
 // Create urls for navigation
-$urlToViewItems = url("forum/view-all");
-
-
 
 ?><h1>Ställ en fråga!</h1>
 
 <?= $form ?>
-
-<p>
-    <a href="<?= $urlToViewItems ?>">Se alla frågor</a>
-</p>
